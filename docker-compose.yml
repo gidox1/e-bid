@@ -1,0 +1,19 @@
+version: '2'
+
+services:
+  database:
+    container_name: eBidDb
+    image: mysql:5.7
+    command: mysqld --character-set-server=utf8 --collation-server=utf8_general_ci
+    ports:
+        - "3309:3306"
+    environment:
+        MYSQL_ALLOW_EMPTY_PASSWORD: "yes"
+        MYSQL_USER: "ebid_user"
+        MYSQL_PASSWORD: "ebid_password"
+        MYSQL_DATABASE: "ebid_db"
+    networks:
+        - main_network
+networks:
+  main_network:
+    driver: bridge

@@ -1,0 +1,8 @@
+node_modules
+dist
+.env.local
+.env.staging
+.env.production
+.env
+tnt.txt
+distribution
