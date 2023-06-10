@@ -10,6 +10,7 @@ import cors from 'cors';
 import { config } from './src/config';
 import { logger } from './src/lib/logger';
 import { AppDataSource } from './src/data-source';
+import { FirebaseClient } from './src/lib/firebase';
 
 const app: Application = express();
 export const router: Router = express.Router();
@@ -40,6 +41,8 @@ process.on('unhandledRejection', (reason, promise) => {
 try {
   // initialize database and start app
   (async() => {await AppDataSource.initialize()})();
+  // initialize firebase-admin
+  new FirebaseClient().initFirebaseAdmin();
   app.listen(config.port, () => {
     logger.log(`E-BID Server started on port ${config.port} `);
   });
